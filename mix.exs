@@ -15,8 +15,7 @@ defmodule UeberauthEcwid.MixProject do
       source_url: @url,
       homepage_url: @url,
       description: description(),
-      deps: deps(),
-      docs: docs()
+      deps: deps()
     ]
   end
 
@@ -49,9 +48,5 @@ defmodule UeberauthEcwid.MixProject do
       {:ueberauth, "~> 0.4.0"},
       {:ex_doc, "~> 0.14.0", only: :dev}
     ]
-  end
-
-  defp docs do
-    [extras: ["README.md"]]
   end
 end
