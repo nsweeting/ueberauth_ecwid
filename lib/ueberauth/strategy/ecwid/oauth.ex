@@ -49,7 +49,7 @@ defmodule Ueberauth.Strategy.Ecwid.OAuth do
   end
 
   def get(_conn, token) do
-    store_id = token.other["store_id"]
+    store_id = token.other_params["store_id"]
     access_token = token.access_token
     profile_url = "https://app.ecwid.com/api/v3/#{store_id}/profile?token=#{access_token}"
 
