@@ -46,7 +46,7 @@ defmodule UeberauthEcwid.MixProject do
     [
       {:oauth2, "~> 0.9.0"},
       {:ueberauth, "~> 0.4.0"},
-      {:ex_doc, "~> 0.14.0", only: :dev}
+      {:ex_doc, "~> 0.19.0", only: :dev}
     ]
   end
 end
