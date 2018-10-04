@@ -48,11 +48,12 @@ defmodule Ueberauth.Strategy.Ecwid.OAuth do
     |> OAuth2.Client.authorize_url!(params)
   end
 
-  def get(token, url, headers \\ [], opts \\ []) do
-    [token: token]
-    |> client()
-    |> put_param("client_secret", client().client_secret)
-    |> OAuth2.Client.get(url, headers, opts)
+  def get(_conn, token) do
+    store_id = token.other["store_id"]
+    access_token = token.access_token
+    profile_url = "https://app.ecwid.com/api/v3/#{store_id}/profile?token=#{access_token}"
+
+    OAuth2.Client.get(client(), profile_url)
   end
 
   def get_token!(params \\ [], options \\ []) do
