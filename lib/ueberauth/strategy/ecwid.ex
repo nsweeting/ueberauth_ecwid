@@ -74,13 +74,8 @@ defmodule Ueberauth.Strategy.Ecwid do
 
   You can also include a `state` param that ecwid will return to you.
   """
-  def handle_request!(%Plug.Conn{params: %{"store_id" => store_id}} = conn) do
-    scopes = conn.params["scope"] || option(conn, :default_scope)
-    opts = [store_id: store_id, redirect_uri: callback_url(conn), scope: scopes]
-
-    opts =
-      if conn.params["state"], do: Keyword.put(opts, :state, conn.params["state"]), else: opts
-
+  def handle_request!(%Plug.Conn{} = conn) do
+    opts = get_options(conn)
     redirect!(conn, Ueberauth.Strategy.Ecwid.OAuth.authorize_url!(opts))
   end
 
@@ -153,6 +148,16 @@ defmodule Ueberauth.Strategy.Ecwid do
       {:error, %OAuth2.Error{reason: reason}} ->
         set_errors!(conn, [error("OAuth2", reason)])
     end
+  end
+
+  defp get_options(conn) do
+    [
+      scope: conn.params["scope"] || option(conn, :default_scope),
+      redirect_uri: callback_url(conn),
+      state: conn.params["state"],
+      store_id: conn.params["store_id"]
+    ]
+    |> Enum.reject(fn {_, v} -> is_nil(v) end)
   end
 
   defp option(conn, key) do

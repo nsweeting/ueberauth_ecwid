@@ -1,7 +1,7 @@
 defmodule UeberauthEcwid.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.1.1"
   @url "https://github.com/nsweeting/ueberauth_ecwid"
 
   def project do
@@ -31,7 +31,7 @@ defmodule UeberauthEcwid.MixProject do
       files: ["lib", "mix.exs", "README*", "LICENSE"],
       maintainers: ["Nicholas Sweeting"],
       licenses: ["MIT"],
-      links: %{"GitHub": @url}
+      links: %{GitHub: @url}
     ]
   end
 
