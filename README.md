@@ -10,7 +10,7 @@ Ecwid OAuth2 strategy for Überauth.
 
     ```elixir
     def deps do
-      [{:ueberauth_ecwid, "~> 0.1.0"}]
+      [{:ueberauth_ecwid, "~> 0.1.1"}]
     end
     ```
     ```
